@@ -1,5 +1,7 @@
 package queue;
-
+/**
+ * @author Donat \damm1t/ Sokolov
+ */
 //INV: size >= 0 && elements[0..size-1] != NULL
 public class ArrayQueueModule {
     private static int back, front, size;
