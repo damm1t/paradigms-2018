@@ -1,0 +1,5 @@
+.gradle/
+.idea/
+out/
+paradigms-2018.iml
+ParseExpression/
