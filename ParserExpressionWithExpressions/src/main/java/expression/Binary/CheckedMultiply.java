@@ -1,0 +1,28 @@
+package main.java.expression.Binary;
+
+
+import main.java.expression.Exceptions.OverflowException;
+import main.java.expression.TripleExpression;
+
+public class CheckedMultiply extends BinaryOperation {
+
+    public CheckedMultiply(TripleExpression firstTerm, TripleExpression secondTerm) {
+        super(firstTerm, secondTerm);
+    }
+
+    @Override
+    protected int apply(int x, int y) throws OverflowException {
+        if ((x > 0 && y > 0 && Integer.MAX_VALUE / x < y) ||
+                (x > 0 && y < 0 && Integer.MIN_VALUE / x > y) ||
+                (x < 0 && y > 0 && Integer.MIN_VALUE / y > x) ||
+                (x < 0 && y < 0 && Integer.MAX_VALUE / x > y)) {
+            throw new OverflowException();
+        }
+        return x * y;
+    }
+
+    @Override
+    protected String toStringImpl() {
+        return " * ";
+    }
+}
