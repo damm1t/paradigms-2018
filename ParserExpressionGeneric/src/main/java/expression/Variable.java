@@ -1,13 +1,20 @@
 package main.java.expression;
 
-public class Variable implements TripleExpression {
+import main.java.expression.exceptions.MathException;
+
+public class Variable<T> implements TripleExpression<T> {
     private final String name;
 
     public Variable(String name) {
         this.name = name;
     }
 
-    public int evaluate(int x, int y, int z) {
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public T evaluate(T x, T y, T z) throws MathException {
         switch (name) {
             case "x":
                 return x;
@@ -17,10 +24,6 @@ public class Variable implements TripleExpression {
                 return z;
         }
         assert false : "wrong variable";
-        return 0;
-    }
-
-    public String toString() {
-        return name;
+        return null;
     }
 }

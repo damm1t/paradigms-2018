@@ -33,19 +33,13 @@ public class ExpressionParser implements Parser {
             case COUNT:
                 res = new Count(unary());
                 break;
-            case ABS:
-                res = new Abs(unary());
-                break;
-            case SQUARE:
-                res = new Square(unary());
-                break;
             case OPEN_BRACE:
-                res = shifts();
+                res = or();
                 tokenizer.nextToken();
                 break;
             default:
                 throw new ParserException("Expected: [OPEN_BRACE, SQUARE, ABS, MINUS, " +
-                    "VARIABLE, NUMBER], found: " + tokenizer.getToken());
+                        "VARIABLE, NUMBER], found: " + tokenizer.getToken());
         }
         return res;
     }
@@ -124,26 +118,10 @@ public class ExpressionParser implements Parser {
         }
     }
 
-    private TripleExpression shifts() {
-        var res = or();
-        for (; ; ) {
-            switch (tokenizer.getToken()) {
-                case LEFT_SHIFT:
-                    res = new LeftShift(res, or());
-                    break;
-                case RIGHT_SHIFT:
-                    res = new RightShift(res, or());
-                    break;
-                default:
-                    return res;
-            }
-        }
-    }
-
     @Override
     public TripleExpression parse(final String s) {
         tokenizer = new Tokenizer(s);
-        var exp = shifts();
+        var exp = or();
         if (tokenizer.getToken() != Token.EOF)
             throw new ParserException("Expected: EOF, Found: " + tokenizer.getToken());
         return exp;

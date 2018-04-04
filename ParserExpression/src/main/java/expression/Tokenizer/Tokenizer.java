@@ -24,11 +24,7 @@ public class Tokenizer {
         hashMap.put("/", Token.DIV);
         hashMap.put("(", Token.OPEN_BRACE);
         hashMap.put(")", Token.CLOSE_BRACE);
-        hashMap.put("<<", Token.LEFT_SHIFT);
-        hashMap.put(">>", Token.RIGHT_SHIFT);
-        hashMap.put("abs", Token.ABS);
         hashMap.put("mod", Token.MOD);
-        hashMap.put("square", Token.SQUARE);
     }
 
     private void skipWhiteSpace() {
@@ -77,7 +73,7 @@ public class Tokenizer {
                 position++;
             }
             var strNum = expression.substring(l, r);
-            if(strNum.length() > 10 || Integer.MIN_VALUE > Long.parseLong(strNum) + 1 || Long.parseLong(strNum) - 1 > Integer.MAX_VALUE){
+            if (strNum.length() > 10 || Integer.MIN_VALUE > Long.parseLong(strNum) + 1 || Long.parseLong(strNum) - 1 > Integer.MAX_VALUE) {
                 throw new TokenizerException(strNum + " not Integer value");
             }
             value = Integer.parseUnsignedInt(expression.substring(l, r));
@@ -91,7 +87,7 @@ public class Tokenizer {
             var key = String.valueOf(entry.getKey());
             var length = key.length();
             if (position + length <= expression.length()
-                && expression.substring(position, position + length).equals(key)) {
+                    && expression.substring(position, position + length).equals(key)) {
 
                 curToken = (Token) entry.getValue();
                 if (curToken == Token.VARIABLE) {
