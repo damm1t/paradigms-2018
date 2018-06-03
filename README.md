@@ -2,6 +2,198 @@
 
 [Условия домашних заданий](http://www.kgeorgiy.info/courses/paradigms/homeworks.html)
 
+## Домашнее задание 14. Объектные выражения на Clojure
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `expression.clj`.
+    * [Исходный код тестов](clojure/cljtest/object/ClojureObjectExpressionTest.java)
+        * Запускать c аргументом `easy` или `hard`
+ * *Модификация*. Дополнительное реализовать поддержку:
+    * унарных операций:
+        * `Sin` (`sin`) — синус, `(sin 4846147)` примерно равно 1;
+        * `Cos` (`cos`) — косинус, `(cos 5419351)` примерно равно 1.
+    * [Исходный код тестов](clojure/cljtest/object/ClojureObjectSinCosTest.java)
+        * Запускать c аргументом `easy` или `hard`
+
+## Домашнее задание 13. Функциональные выражения на Clojure
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `expression.clj`.
+    * [Исходный код тестов](clojure/cljtest/functional/ClojureFunctionalExpressionTest.java)
+        * Запускать c аргументом `easy` или `hard`
+ * *Модификация*. Дополнительное реализовать поддержку:
+    * унарных операций:
+        * `sinh` (`sinh`) — гиперболический синус, `(sinh 3)` немного больше 10;
+        * `cosh` (`cosh`) — гиперболический косинус, `(cosh 3)` немного меньше 10.
+    * [Исходный код тестов](clojure/cljtest/functional/ClojureFunctionalSinhCoshTest.java)
+        * Запускать c аргументом `easy` или `hard`
+
+
+## Домашнее задание 12. Линейная алгебра на Clojure
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `linear.clj`.
+    * Исходный код тестов
+        * [Простой вариант](clojure/cljtest/linear/LinearBinaryTest.java)
+        * [Сложный вариант](clojure/cljtest/linear/LinearNaryTest.java)
+ * *Простая*
+    * Добавьте операции поэлементного сложения (`s+`),
+        вычитания (`s-`) и умножения (`s*`) чисел и
+        векторов любой (в том числе, переменной) формы.
+        Например, `(s+ [[1 2] 3] [[4 5] 6])` должно быть равно `[[5 7] 9]`.
+    * [Исходный код тестов](clojure/cljtest/linear/LinearShapelessTest.java)
+ * *Сложная*
+    * Назовем _тензором_ многомерную прямоугольную таблицу чисел.
+    * _Форма_ тензора – последовательность чисел
+        (_s_<sub>1..n</sub>)=(_s_<sub>1</sub>, _s_<sub>2</sub>, …, _s<sub>n</sub>_), где
+        _n_ – размерность тензора, а _s<sub>i</sub>_ – число элементов
+        по _i_-ой оси.
+      Например, форма тензора `[ [ [2 3 4] [5 6 7] ] ]`  равна (1, 2, 3),
+      а форма `1` равна ().
+    * Тензор формы (_s_<sub>1.._n_</sub>) может быть _распространен_ (broadcast)
+      до тензора формы (_u_<sub>1.._m_</sub>), если (_s_<sub>i.._n_</sub>) является
+      суффиксом (_u<sub>1..m</sub>_). Для этого, исходный тензор копируется
+      по недостающим осям.
+      Например, распространив тензор `[ [2] [3] ]` формы (2, 1) до
+      формы (3, 2, 1) получим `[ [ [2] [3] ] [ [2] [3] ] [ [2] [3] ] ]`,
+      а распространив `1` до формы (2, 3) получим `[ [1 1 1] [1 1 1] ]`.
+    * Тензоры называются совместимыми, если один из них может быть распространен
+      до формы другого.
+      Например, тензоры формы (3, 2, 1) и (2, 1) совместимы, а
+      (3, 2, 1) и (1, 2) – нет. Числа совместимы с тензорами любой формы.
+    * Добавьте операции поэлементного сложения (`b+`),
+      вычитания (`b-`) и умножения (`b*`) совместимых тензоров.
+      Если формы тензоров не совпадают, то тензоры меньшей размерности
+      должны быть предварительно распространены до тензоров большей размерности.
+      Например, `(b+ 1 [ [10 20 30] [40 50 60] ] [100 200 300] )` должно
+      быть равно `[ [111 221 331] [141 251 361] ]`.
+    * [Исходный код тестов](clojure/cljtest/linear/LinearBroadcastTest.java)
+
+
+## Исходный код к лекциям по Clojure
+
+Запуск Clojure
+ * Консоль: [Windows](clojure/RunClojure.cmd), [*nix](clojure/RunClojure.sh)
+    * Интерактивный: `RunClojure`
+    * С выражением: `RunClojure --eval "<выражение>"`
+    * Скрипт: `RunClojure <файл скрипта>"`
+    * Справка: `RunClojure --help`
+ * IDE
+    * IntelliJ Idea: [плагин Cursive](https://cursive-ide.com/userguide/)
+    * Eclipse: [плагин Counterclockwise](https://doc.ccw-ide.org/documentation.html)
+
+[Скрипт со всеми примерами](clojure/examples.clj)
+
+Лекция 1. Функции
+ * [Введение](clojure/examples/1_1_intro.clj)
+ * [Функции](clojure/examples/1_2_functions.clj)
+ * [Списки](clojure/examples/1_3_lists.clj)
+ * [Вектора](clojure/examples/1_4_vectors.clj)
+ * [Функции высшего порядка](clojure/examples/1_5_functions-2.clj)
+
+Лекция 2. Внешний мир
+ * [Ввод-вывод](clojure/examples/2_1_io.clj)
+ * [Разбор и гомоиконность](clojure/examples/2_2_read.clj)
+ * [Порядки вычислений](clojure/examples/2_3_evaluation-orders.clj)
+ * [Потоки](clojure/examples/2_4_streams.clj)
+ * [Отображения и множества](clojure/examples/2_5_maps.clj)
+
+## Домашнее задание 11. Обработка ошибок на JavaScript
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `objectExpression.js`.
+    * [Исходный код тестов](javascript/jstest/prefix/PrefixParserTest.java)
+        * Запускать c аргументом `easy` или `hard`
+ * *Простая*. Дополнительное реализовать поддержку:
+    * унарных операций:
+        * `ArcTan` (`atan`) — арктангенс, `(atan 2)` примерно равно 1.1;
+        * `Exp` (`Exp`) — экспонента, `(exp 3)` примерно равно 20;
+    * [Исходный код тестов](javascript/jstest/prefix/PrefixAtanExpTest.java)
+ * *Сложная*. Дополнительное реализовать поддержку выражений в постфиксной записи:
+    * `(2 3 +)` равно 5
+    * [Исходный код тестов](javascript/jstest/prefix/PostfixAtanExpTest.java)
+
+
+## Домашнее задание 10. Объектные выражения на JavaScript
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `objectExpression.js`.
+    * [Исходный код тестов](javascript/jstest/object/ObjectExpressionTest.java)
+        * Запускать c аргументом `easy`, `hard` или `bonus`.
+ * *Модификация*. Дополнительное реализовать поддержку:
+    * унарных операций:
+        * `Square` (`square`) — возведение в квадрат, `3 square` равно 9;
+        * `Sqrt` (`sqrt`) — извлечение квадратного корня из модуля аргумента, `-9 sqrt` равно 3;
+    * [Исходный код тестов](javascript/jstest/object/ObjectSquareTest.java)
+ * *Модификация*. Дополнительное реализовать поддержку:
+    * бинарных операций:
+        * `Power` (`pow`) — возведение в степень, `2 3 pow` равно 8;
+        * `Log` (`log`) — логарифм абсолютного значения аргумента
+            по абсолютному значению основания `-2 -8 log` равно 3;
+    * [Исходный код тестов](javascript/jstest/object/ObjectPowLogTest.java)
+
+
+## Домашнее задание 9. Функциональные выражения на JavaScript
+
+Модификации
+ * *Базовая*
+    * Код должен находиться в файле `functionalExpression.js`.
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalExpressionTest.java)
+        * Запускать c аргументом `hard` или `easy`;
+ * *Простая*. Дополнительное реализовать поддержку:
+    * переменных: `y`, `z`;
+    * унарных функций:
+        * `negate` — смена знака, `-2 negate` равно 2;
+        * `cube` — возведение в куб, `2 cube` равно 8;
+        * `cuberoot` — кубический корень, `8 cuberoot` равно 2;
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalCubeTest.java)
+ * *Сложная*. Дополнительное реализовать поддержку:
+    * переменных: `y`, `z`;
+    * констант:
+        * `pi` — π;
+        * `e` — основание натурального логарифма;
+    * операций:
+        * `negate` — смена знака, `-2 negate` равно 2;
+        * `min3` — минимальный из трех элементов, `3 1 4 min3` равно 1;
+        * `max5` — максимальный из пяти элементов, `3 1 4 0 2 max5` равно 4.
+    * [Исходный код тестов](javascript/jstest/functional/FunctionalPieMinMaxTest.java)
+        * Запускать c аргументом `hard` или `easy`
+
+
+## Исходный код к лекциям по JavaScript
+
+[Скрипт с примерами](javascript/examples.js)
+
+Запуск примеров
+ * [В браузере](javascript/RunJS.html)
+ * Из консоли
+    * [на Java](javascript/RunJS.java): `java -cp . RunJS `
+    * [на jjs](javascript/RunJS.jjs.js): `jjs RunJS.jjs.js`
+    * [на node.js](javascript/RunJS.node.js): `node RunJS.node.js`
+
+Лекция 1. Типы и функции
+ * [Типы](javascript/examples/1_1_types.js)
+ * [Функции](javascript/examples/1_2_functions.js)
+ * [Функции высшего порядка](javascript/examples/1_3_functions-hi.js).
+   Обратите внимание на реализацию функции `mCurry`.
+
+Лекция 2. Объекты и методы
+ * [Объекты](javascript/examples/2_1_objects.js)
+ * [Замыкания](javascript/examples/2_2_closures.js)
+ * [Модули](javascript/examples/2_3_modules.js)
+ * [Пример: стеки](javascript/examples/2_4_stacks.js)
+
+Лекция 3. Другие возможности
+ * [Обработка ошибок](javascript/examples/3_1_errors.js)
+ * [Чего нет в JS](javascript/examples/3_2_no.js)
+ * [Стандартная библиотека](javascript/examples/3_3_builtins.js)
+ * [Работа со свойствами](javascript/examples/3_4_properties.js)
+
 
 ## Домашнее задание 8. Вычисление в различных типах
 
